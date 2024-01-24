@@ -1,0 +1,21 @@
+spec:
+  containers:
+  - name: vscode
+    image: sfpscogs-scs.registry.snowflakecomputing.com/jsummer/catalog/images/vscode
+    resources:
+      requests:
+        nvidia.com/gpu: 1
+      limits:
+        nvidia.com/gpu: 1
+    volumeMounts:
+    - name: stage
+      mountPath: /workspace/stage
+  endpoints:
+  - name: vscode
+    port: 8443
+    public: true
+  volumes:
+  - name: stage
+    source: '@SNOW_AI_FILES'
+    uid: 1000
+    gid: 1000
